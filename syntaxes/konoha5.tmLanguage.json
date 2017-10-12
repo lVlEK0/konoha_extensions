@@ -1,0 +1,111 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "konoha5",
+	"patterns": [
+		{
+			"include": "#code"
+		}
+	],
+	"repository": {
+		"code":{
+			"patterns": [
+				{
+					"include": "#comment"
+				},
+				{
+					"include": "#example"
+				},
+				{
+					"include": "#keywords"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#constant"
+				},
+				{
+					"include": "#let"
+				},
+				{
+					"include": "#function_call"
+				},
+				{
+					"include": "#type"
+				}
+			],
+			"repository": {
+				"comment": {
+					"name": "comment.block.konoha5",
+					"begin": "/\\*",
+					"end": "\\*/",
+					"patterns": [
+						{
+							"name": "comment.block.konoha5",
+							"match": "\\\\."
+						}
+					]
+				},
+				"example": {
+					"patterns": [{
+						"name": "entity.name.type.konoha5",
+						"match": "\\b(example)\\b"
+					}]
+				},
+				"keywords": {
+					"patterns": [{
+						"name": "keyword.control.konoha5",
+						"match": "\\b(if|then|else|for|return|match)\\b"
+					}]
+				},
+				"strings": {
+					"name": "string.quoted.double.konoha5",
+					"begin": "\"",
+					"end": "\"",
+					"patterns": [
+						{
+							"name": "constant.character.escape.konoha5",
+							"match": "\\\\."
+						}
+					]
+				},
+				"constant": {
+					"patterns": [
+						{
+							"name": "constant.numeric.konoha5",
+							"match": "[1-9][0-9]*|0x[1-9A-F]+|0[1-7]+"
+						}					
+					]
+				},
+				"let": {
+					"patterns": [
+						{
+							"name": "storage.type.konoha5",
+							"match": "\\b(let|def|assume)\\b"
+						}
+					]
+				},
+				"function_call": {
+					"patterns": [
+						{
+							"match": "(\\w+\\??\\s*)\\(([^\\)]*\\))",
+							"captures": {
+								"1": {"name": "support.function.konoha5"},
+								"2": {"patterns":[{"include": "#code"}] }
+							}
+						}
+					]
+				},
+				"type": {
+					"patterns": [
+						{
+							"name": "storage.type.konoha5",
+							"match": "\\b(Bool|Int|Float|String)\\b"
+						}
+					]
+				}
+			}
+		}
+	},
+	"scopeName": "source.k"
+}

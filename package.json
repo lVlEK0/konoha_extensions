@@ -1,0 +1,55 @@
+{
+    "name": "konoha5",
+    "displayName": "konoha5",
+    "description": "konoha5",
+    "version": "0.0.1",
+    "publisher": "Kuramitsulab",
+    "engines": {
+        "vscode": "^1.16.0"
+    },
+    "categories": [
+        "Other",
+        "Languages"
+    ],
+    "contributes": {
+        "commands":
+            [{
+                "command": "extension.interpreterKonoha5",
+                "title": "Konoha5 Interpreter" 
+            },
+            {
+                "command": "extension.runKonoha5",
+                "title": "Konoha5 Run" 
+            }
+        ],
+        "languages": [{
+            "id": "konoha5",
+            "aliases": ["konoha5", "konoha5"],
+            "extensions": [".k"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "konoha5",
+            "scopeName": "source.k",
+            "path": "./syntaxes/konoha5.tmLanguage.json"
+        }]
+    },
+    "activationEvents": [
+        "onLanguage:konoha5"
+    ],
+    "main": "./out/src/extension",
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.5.2",
+        "vscode": "^1.1.5",
+        "mocha": "^3.5.0",
+        "@types/node": "^7.0.43",
+        "@types/mocha": "^2.2.42"
+    }
+}
